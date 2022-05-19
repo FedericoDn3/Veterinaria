@@ -1,0 +1,51 @@
+# Project: Veterinaria
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Veterinaria_private.res
+OBJ      = main.o Source/Mascota.o Source/Gato.o Source/Perro.o Source/Socio.o Source/Consulta.o DataType/Fecha.o $(RES)
+LINKOBJ  = main.o Source/Mascota.o Source/Gato.o Source/Perro.o Source/Socio.o Source/Consulta.o DataType/Fecha.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = Veterinaria.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Source/Mascota.o: Source/Mascota.cpp
+	$(CPP) -c Source/Mascota.cpp -o Source/Mascota.o $(CXXFLAGS)
+
+Source/Gato.o: Source/Gato.cpp
+	$(CPP) -c Source/Gato.cpp -o Source/Gato.o $(CXXFLAGS)
+
+Source/Perro.o: Source/Perro.cpp
+	$(CPP) -c Source/Perro.cpp -o Source/Perro.o $(CXXFLAGS)
+
+Source/Socio.o: Source/Socio.cpp
+	$(CPP) -c Source/Socio.cpp -o Source/Socio.o $(CXXFLAGS)
+
+Source/Consulta.o: Source/Consulta.cpp
+	$(CPP) -c Source/Consulta.cpp -o Source/Consulta.o $(CXXFLAGS)
+
+DataType/Fecha.o: DataType/Fecha.cpp
+	$(CPP) -c DataType/Fecha.cpp -o DataType/Fecha.o $(CXXFLAGS)
+
+Veterinaria_private.res: Veterinaria_private.rc 
+	$(WINDRES) -i Veterinaria_private.rc --input-format=rc -o Veterinaria_private.res -O coff 
+
